@@ -6,7 +6,7 @@ I-Logix-RPY-Archive version 8.10.0 Java 6930133
 	- Dependencies = { IRPYRawContainer 
 		- size = 0;
 	}
-	- _modifiedTimeWeak = 2.21.2016::22:40:23;
+	- _modifiedTimeWeak = 2.21.2016::22:46:30;
 	- _lastID = 10;
 	- Declaratives = { IRPYRawContainer 
 		- size = 5;
@@ -11836,7 +11836,7 @@ I-Logix-RPY-Archive version 8.10.0 Java 6930133
 			}
 		}
 	}
-	- weakCGTime = 2.21.2016::22:40:23;
+	- weakCGTime = 2.21.2016::22:46:30;
 	- strongCGTime = 2.21.2016::20:40:32;
 	- _defaultComposite = GUID 337c2ece-6425-4e60-9166-6093180f2785;
 	- _eventsBaseID = 8016;
@@ -16575,13 +16575,13 @@ getP_cen_HMI().gen(new signin(params.usrid));";
 			- _id = GUID 346b66c7-353f-4821-b13f-4463e17bded9;
 			- _myState = 8192;
 			- _name = "HMI";
-			- _modifiedTimeWeak = 2.21.2016::22:34:2;
+			- _modifiedTimeWeak = 2.21.2016::22:46:53;
 			- _theMainDiagram = { IHandle 
 				- _m2Class = "IDiagram";
 				- _id = GUID 4fc08f23-7e35-4836-a684-b6cd36ad27d6;
 			}
 			- _lastID = 5;
-			- weakCGTime = 2.21.2016::22:34:2;
+			- weakCGTime = 2.21.2016::22:46:53;
 			- strongCGTime = 2.21.2016::20:40:55;
 			- Ports = { IRPYRawContainer 
 				- size = 2;
@@ -16741,14 +16741,14 @@ getP_cen_HMI().gen(new signin(params.usrid));";
 					- _id = GUID 82919ba0-0201-40e4-bbfc-c54791faec7d;
 					- _myState = 8192;
 					- _name = "currentUser";
-					- _modifiedTimeWeak = 2.21.2016::22:31:58;
+					- _modifiedTimeWeak = 2.21.2016::22:46:53;
 					- _typeOf = { IHandle 
 						- _m2Class = "IType";
 						- _filename = "PredefinedTypesJava.sbs";
 						- _subsystem = "PredefinedTypesJava";
 						- _class = "";
-						- _name = "int";
-						- _id = GUID 3b5a0555-e8e5-4b86-9ea1-95ae819b6564;
+						- _name = "String";
+						- _id = GUID cb97d0d7-bf5d-4020-b25e-f6a87117705a;
 					}
 					- _isOrdered = 0;
 					- _protection = iPublic;
@@ -16760,14 +16760,14 @@ getP_cen_HMI().gen(new signin(params.usrid));";
 					- _id = GUID 0435e079-6d78-47fb-b6d7-ea8b2cec0f79;
 					- _myState = 8192;
 					- _name = "userid";
-					- _modifiedTimeWeak = 2.21.2016::22:32:27;
+					- _modifiedTimeWeak = 2.21.2016::22:44:40;
 					- _typeOf = { IHandle 
 						- _m2Class = "IType";
 						- _filename = "PredefinedTypesJava.sbs";
 						- _subsystem = "PredefinedTypesJava";
 						- _class = "";
-						- _name = "int";
-						- _id = GUID 3b5a0555-e8e5-4b86-9ea1-95ae819b6564;
+						- _name = "String";
+						- _id = GUID cb97d0d7-bf5d-4020-b25e-f6a87117705a;
 					}
 					- _isOrdered = 0;
 					- _protection = iPublic;
@@ -20199,13 +20199,13 @@ getP_HMI_single().gen(new sendtoSingleLogin(params.usrid));";
 			- _id = GUID e3ceba6d-785e-404b-8c5f-c0db235ed9af;
 			- _myState = 8192;
 			- _name = "Checkpoint";
-			- _modifiedTimeWeak = 2.21.2016::22:40:23;
+			- _modifiedTimeWeak = 2.21.2016::22:44:13;
 			- _theMainDiagram = { IHandle 
 				- _m2Class = "IDiagram";
 				- _id = GUID 345c29ff-fceb-4fbe-a6c9-13e6f3e2d251;
 			}
 			- _lastID = 8;
-			- weakCGTime = 2.21.2016::22:40:23;
+			- weakCGTime = 2.21.2016::22:44:13;
 			- strongCGTime = 2.21.2016::22:4:24;
 			- Ports = { IRPYRawContainer 
 				- size = 5;
@@ -20514,14 +20514,14 @@ getP_HMI_single().gen(new sendtoSingleLogin(params.usrid));";
 					- _id = GUID f5b1013b-c112-4660-992c-58e220aafb5d;
 					- _myState = 8192;
 					- _name = "validUser";
-					- _modifiedTimeWeak = 2.21.2016::22:38:48;
+					- _modifiedTimeWeak = 2.21.2016::22:44:13;
 					- _typeOf = { IHandle 
 						- _m2Class = "IType";
 						- _filename = "PredefinedTypesJava.sbs";
 						- _subsystem = "PredefinedTypesJava";
 						- _class = "";
-						- _name = "int";
-						- _id = GUID 3b5a0555-e8e5-4b86-9ea1-95ae819b6564;
+						- _name = "String";
+						- _id = GUID cb97d0d7-bf5d-4020-b25e-f6a87117705a;
 					}
 					- _isOrdered = 0;
 					- _protection = iPublic;
@@ -20538,9 +20538,9 @@ getP_HMI_single().gen(new sendtoSingleLogin(params.usrid));";
 					- _id = GUID c342f002-6917-4471-9297-aaaff93c7c01;
 					- _myState = 10240;
 					- _name = "statechart_5";
-					- _modifiedTimeWeak = 2.21.2016::22:40:23;
+					- _modifiedTimeWeak = 2.21.2016::22:44:2;
 					- _lastID = 11;
-					- weakCGTime = 2.21.2016::22:40:23;
+					- weakCGTime = 2.21.2016::22:44:2;
 					- strongCGTime = 2.21.2016::20:47:49;
 					- _multiplicity = "";
 					- _itsStateChart = { IHandle 
@@ -20615,10 +20615,10 @@ getP_check_single().gen(new access());";
 							- _id = GUID dc834648-4f7d-4def-9455-f616153ba4d5;
 							- _myState = 2048;
 							- _name = "transition_3";
-							- _modifiedTimeWeak = 2.21.2016::22:38:0;
+							- _modifiedTimeWeak = 2.21.2016::22:44:2;
 							- _itsLabel = { ILabel 
 								- _id = GUID bf7bed9d-e6c3-466b-9282-d245dc46bf27;
-								- _modifiedTimeWeak = 2.21.2016::22:38:0;
+								- _modifiedTimeWeak = 2.21.2016::22:44:2;
 								- _itsTrigger = { IInterfaceItemTrigger 
 									- _id = GUID d1325a0b-dffa-4425-9d73-7c24331326c4;
 									- _modifiedTimeWeak = 1.2.1990::0:0:0;
@@ -20632,8 +20632,8 @@ getP_check_single().gen(new access());";
 								- _itsGuard = NULL;
 								- _itsAction = { IAction 
 									- _id = GUID af4d17f2-ec49-48bf-8ed6-a31e1fd8593a;
-									- _modifiedTimeWeak = 2.21.2016::22:38:0;
-									- _body = "getP_check_right().gen(new checkingRights(usrid));";
+									- _modifiedTimeWeak = 2.21.2016::22:44:2;
+									- _body = "getP_check_right().gen(new checkingRights(params.usrid));";
 								}
 							}
 							- _itsTarget = GUID bafd9ef3-3ff1-46c6-9859-9052d56a7e5f;
@@ -20844,7 +20844,7 @@ getP_check_single().gen(new access());";
 							- _defaultTrans = ;
 						}
 					}
-					- _version = 2.21.2016::23:40:23;
+					- _version = 2.21.2016::23:44:2;
 					- _baseVersion = 1.1.1970::1:0:0;
 					- _diagram = GUID f312a6d0-740d-4d87-acfe-0de6dd87508a;
 					- Views = { IRPYRawContainer 
@@ -20921,8 +20921,8 @@ getP_check_single().gen(new access());";
 								}
 							}
 							- _name = "statechartdiagram_0";
-							- _modifiedTimeWeak = 2.21.2016::22:40:23;
-							- _lastModifiedTime = "2.21.2016::22:40:23";
+							- _modifiedTimeWeak = 2.21.2016::22:44:2;
+							- _lastModifiedTime = "2.21.2016::22:44:2";
 							- _graphicChart = { CGIStateChart 
 								- _id = GUID 791e4427-a1ed-4158-8690-32cf2575710a;
 								- m_type = 0;
@@ -21487,7 +21487,7 @@ getP_check_single().gen(new access());";
 									- m_targetType = 'T';
 									- m_direction = ' ';
 									- m_rpn = { CGIText 
-										- m_str = "checkRight/getP_check_right().gen(new checkingRights(usrid));";
+										- m_str = "checkRight/getP_check_right().gen(new checkingRights(params.usrid));";
 										- m_style = "Arial" 10 0 0 0 1 ;
 										- m_color = { IColor 
 											- m_fgColor = 0;
@@ -25931,10 +25931,28 @@ checkingPolicy();";
 			- _id = GUID cae8f61c-faf9-4c1b-b25a-403a510d847c;
 			- _myState = 8192;
 			- _name = "checkingRights";
-			- _modifiedTimeWeak = 1.2.1990::0:0:0;
+			- _modifiedTimeWeak = 2.21.2016::22:46:30;
+			- _lastID = 1;
 			- _virtual = 0;
 			- Args = { IRPYRawContainer 
-				- size = 0;
+				- size = 1;
+				- value = 
+				{ IArgument 
+					- _id = GUID ac3c7c08-a88d-4f60-a73c-9b4e58f44bda;
+					- _myState = 8192;
+					- _name = "usrid";
+					- _modifiedTimeWeak = 2.21.2016::22:46:30;
+					- _typeOf = { IHandle 
+						- _m2Class = "IType";
+						- _filename = "PredefinedTypesJava.sbs";
+						- _subsystem = "PredefinedTypesJava";
+						- _class = "";
+						- _name = "String";
+						- _id = GUID cb97d0d7-bf5d-4020-b25e-f6a87117705a;
+					}
+					- _isOrdered = 0;
+					- _argumentDirection = In;
+				}
 			}
 		}
 	}

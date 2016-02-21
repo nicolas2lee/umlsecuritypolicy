@@ -42,6 +42,10 @@ public class HMI implements RiJStateConcept, Animated {
     
     protected HMI.p_HMI_single_C p_HMI_single;		//## ignore 
     
+    protected String currentUser;		//## attribute currentUser 
+    
+    protected String userid;		//## attribute userid 
+    
     protected CenterController itsCenterController;		//## link itsCenterController 
     
     //#[ ignore 
@@ -165,6 +169,26 @@ public class HMI implements RiJStateConcept, Animated {
     //## auto_generated 
     public void deleteP_HMI_single() {
         p_HMI_single=null;
+    }
+    
+    //## auto_generated 
+    public String getCurrentUser() {
+        return currentUser;
+    }
+    
+    //## auto_generated 
+    public void setCurrentUser(String p_currentUser) {
+        currentUser = p_currentUser;
+    }
+    
+    //## auto_generated 
+    public String getUserid() {
+        return userid;
+    }
+    
+    //## auto_generated 
+    public void setUserid(String p_userid) {
+        userid = p_userid;
     }
     
     //## auto_generated 
@@ -375,9 +399,13 @@ public class HMI implements RiJStateConcept, Animated {
         
         //## statechart_method 
         public int signedInTakequeryData() {
+            queryData params = (queryData) event;
             int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
             animInstance().notifyTransitionStarted("3");
             signedIn_exit();
+            //#[ transition 3 
+            getP_HMI_single().gen(new sendTask(params.task,currentUser));
+            //#]
             requestData_entDef();
             animInstance().notifyTransitionEnded("3");
             res = RiJStateReactive.TAKE_EVENT_COMPLETE;
@@ -559,6 +587,9 @@ public class HMI implements RiJStateConcept, Animated {
             int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
             animInstance().notifyTransitionStarted("7");
             receivedFromUsr_exit();
+            //#[ transition 7 
+            currentUser="";
+            //#]
             Idle_entDef();
             animInstance().notifyTransitionEnded("7");
             res = RiJStateReactive.TAKE_EVENT_COMPLETE;
@@ -605,9 +636,13 @@ public class HMI implements RiJStateConcept, Animated {
         
         //## statechart_method 
         public int signedInTakesendToField() {
+            sendToField params = (sendToField) event;
             int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
             animInstance().notifyTransitionStarted("5");
             signedIn_exit();
+            //#[ transition 5 
+            getP_HMI_single().gen(new sendTask(params.task,currentUser));
+            //#]
             sentToField_entDef();
             animInstance().notifyTransitionEnded("5");
             res = RiJStateReactive.TAKE_EVENT_COMPLETE;
@@ -627,6 +662,9 @@ public class HMI implements RiJStateConcept, Animated {
             int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
             animInstance().notifyTransitionStarted("2");
             receivedFromUsr_exit();
+            //#[ transition 2 
+            currentUser = userid;
+            //#]
             signedIn_entDef();
             animInstance().notifyTransitionEnded("2");
             res = RiJStateReactive.TAKE_EVENT_COMPLETE;
@@ -644,6 +682,7 @@ public class HMI implements RiJStateConcept, Animated {
             animInstance().notifyTransitionStarted("1");
             Idle_exit();
             //#[ transition 1 
+            userid=params.usrid;
             getP_HMI_single().gen(new sendtoSingleLogin(params.usrid));
             //#]
             receivedFromUsr_entDef();
@@ -783,6 +822,8 @@ public class HMI implements RiJStateConcept, Animated {
     /**  see com.ibm.rational.rhapsody.animation.Animated interface */
     public void addAttributes(AnimAttributes msg) {
         
+        msg.add("currentUser", currentUser);
+        msg.add("userid", userid);
     }
     /**  see com.ibm.rational.rhapsody.animation.Animated interface */
     public void addRelations(AnimRelations msg) {

@@ -24,16 +24,21 @@ import com.ibm.rational.rhapsody.animcom.animMessages.*;
 //## package SCADA 
 
 
-//## event sendToField() 
+//## event sendToField(int) 
 public class sendToField extends RiJEvent implements AnimatedEvent {
     
     public static final int sendToField_SCADA_id = 8017;		//## ignore 
     
+    public int task;
     
     // Constructors
     
     public  sendToField() {
         lId = sendToField_SCADA_id;
+    }
+    public  sendToField(int p_task) {
+        lId = sendToField_SCADA_id;
+        task = p_task;
     }
     
     public boolean isTypeOf(long id) {
@@ -56,9 +61,11 @@ public class sendToField extends RiJEvent implements AnimatedEvent {
     }
     /**  see com.ibm.rational.rhapsody.animation.AnimatedEvent interface */
     public void addAttributes(AnimAttributes msg) {      
+          msg.add("task", task);
     }
     public String toString() {
           String s="sendToField(";      
+          s += "task=" + AnimInstance.animToString(task) + " ";
           s += ")";
           return s;
     }

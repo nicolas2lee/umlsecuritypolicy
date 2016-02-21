@@ -55,6 +55,10 @@ public class SingleAccessPoint implements RiJStateConcept, Animated {
     
     protected int rootState_active;		//## ignore 
     
+    public static final int SingleAccessPoint_Timeout_Valid_id = 1;		//## ignore 
+    
+    public static final int SingleAccessPoint_Timeout_Invalid_id = 2;		//## ignore 
+    
     
     //## statechart_method 
     public RiJThread getThread() {
@@ -350,10 +354,12 @@ public class SingleAccessPoint implements RiJStateConcept, Animated {
         
         //## statechart_method 
         public void InvalidExit() {
+            itsRiJThread.unschedTimeout(SingleAccessPoint_Timeout_Invalid_id, this);
         }
         
         //## statechart_method 
         public void InvalidEnter() {
+            itsRiJThread.schedTimeout(1, SingleAccessPoint_Timeout_Invalid_id, this, "ROOT.Invalid");
         }
         
         //## statechart_method 
@@ -376,19 +382,7 @@ public class SingleAccessPoint implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
-        public int InvalidTakeNull() {
-            int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
-            animInstance().notifyTransitionStarted("5");
-            Invalid_exit();
-            Idle_entDef();
-            animInstance().notifyTransitionEnded("5");
-            res = RiJStateReactive.TAKE_EVENT_COMPLETE;
-            return res;
-        }
-        
-        //## statechart_method 
         public void Invalid_exit() {
-            popNullConfig();
             InvalidExit();
             animInstance().notifyStateExited("ROOT.Invalid");
         }
@@ -401,9 +395,9 @@ public class SingleAccessPoint implements RiJStateConcept, Animated {
         //## statechart_method 
         public int Invalid_takeEvent(short id) {
             int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
-            if(event.isTypeOf(RiJEvent.NULL_EVENT_ID))
+            if(event.isTypeOf(RiJEvent.TIMEOUT_EVENT_ID))
                 {
-                    res = InvalidTakeNull();
+                    res = InvalidTakeRiJTimeout();
                 }
             
             return res;
@@ -422,6 +416,10 @@ public class SingleAccessPoint implements RiJStateConcept, Animated {
                 {
                     res = IdleTakesendtoSingleLogin();
                 }
+            else if(event.isTypeOf(sendTask.sendTask_SCADA_id))
+                {
+                    res = IdleTakesendTask();
+                }
             
             return res;
         }
@@ -432,6 +430,20 @@ public class SingleAccessPoint implements RiJStateConcept, Animated {
             rootState_subState = Idle;
             rootState_active = Idle;
             IdleEnter();
+        }
+        
+        //## statechart_method 
+        public int ValidTakeRiJTimeout() {
+            int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
+            if(event.getTimeoutId() == SingleAccessPoint_Timeout_Valid_id)
+                {
+                    animInstance().notifyTransitionStarted("4");
+                    Valid_exit();
+                    Idle_entDef();
+                    animInstance().notifyTransitionEnded("4");
+                    res = RiJStateReactive.TAKE_EVENT_COMPLETE;
+                }
+            return res;
         }
         
         //## statechart_method 
@@ -457,17 +469,6 @@ public class SingleAccessPoint implements RiJStateConcept, Animated {
         
         //## statechart_method 
         public void rootStateEnter() {
-        }
-        
-        //## statechart_method 
-        public int ValidTakeNull() {
-            int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
-            animInstance().notifyTransitionStarted("4");
-            Valid_exit();
-            Idle_entDef();
-            animInstance().notifyTransitionEnded("4");
-            res = RiJStateReactive.TAKE_EVENT_COMPLETE;
-            return res;
         }
         
         //## statechart_method 
@@ -508,7 +509,6 @@ public class SingleAccessPoint implements RiJStateConcept, Animated {
         //## statechart_method 
         public void Valid_enter() {
             animInstance().notifyStateEntered("ROOT.Valid");
-            pushNullConfig();
             rootState_subState = Valid;
             rootState_active = Valid;
             ValidEnter();
@@ -528,6 +528,7 @@ public class SingleAccessPoint implements RiJStateConcept, Animated {
         
         //## statechart_method 
         public void ValidEnter() {
+            itsRiJThread.schedTimeout(1, SingleAccessPoint_Timeout_Valid_id, this, "ROOT.Valid");
         }
         
         //## statechart_method 
@@ -554,7 +555,6 @@ public class SingleAccessPoint implements RiJStateConcept, Animated {
         //## statechart_method 
         public void Invalid_enter() {
             animInstance().notifyStateEntered("ROOT.Invalid");
-            pushNullConfig();
             rootState_subState = Invalid;
             rootState_active = Invalid;
             InvalidEnter();
@@ -579,11 +579,26 @@ public class SingleAccessPoint implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
+        public int IdleTakesendTask() {
+            sendTask params = (sendTask) event;
+            int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
+            animInstance().notifyTransitionStarted("6");
+            Idle_exit();
+            //#[ transition 6 
+            getP_single_check().gen(new checkRight(params.task, params.usrid));
+            //#]
+            ReceivedRequest_entDef();
+            animInstance().notifyTransitionEnded("6");
+            res = RiJStateReactive.TAKE_EVENT_COMPLETE;
+            return res;
+        }
+        
+        //## statechart_method 
         public int Valid_takeEvent(short id) {
             int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
-            if(event.isTypeOf(RiJEvent.NULL_EVENT_ID))
+            if(event.isTypeOf(RiJEvent.TIMEOUT_EVENT_ID))
                 {
-                    res = ValidTakeNull();
+                    res = ValidTakeRiJTimeout();
                 }
             
             return res;
@@ -591,13 +606,27 @@ public class SingleAccessPoint implements RiJStateConcept, Animated {
         
         //## statechart_method 
         public void Valid_exit() {
-            popNullConfig();
             ValidExit();
             animInstance().notifyStateExited("ROOT.Valid");
         }
         
         //## statechart_method 
+        public int InvalidTakeRiJTimeout() {
+            int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
+            if(event.getTimeoutId() == SingleAccessPoint_Timeout_Invalid_id)
+                {
+                    animInstance().notifyTransitionStarted("5");
+                    Invalid_exit();
+                    Idle_entDef();
+                    animInstance().notifyTransitionEnded("5");
+                    res = RiJStateReactive.TAKE_EVENT_COMPLETE;
+                }
+            return res;
+        }
+        
+        //## statechart_method 
         public void ValidExit() {
+            itsRiJThread.unschedTimeout(SingleAccessPoint_Timeout_Valid_id, this);
         }
         
         /**  methods added just for design level debugging instrumentation */

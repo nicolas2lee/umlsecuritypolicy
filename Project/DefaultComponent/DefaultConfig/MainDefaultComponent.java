@@ -35,14 +35,17 @@ public class MainDefaultComponent {
             Class.forName("SCADA.access");
             Class.forName("SCADA.allow");
             Class.forName("SCADA.approved");
+            Class.forName("SCADA.checkingRights");
             Class.forName("SCADA.checkLogin");
             Class.forName("SCADA.checkPolicy");
+            Class.forName("SCADA.checkRight");
             Class.forName("SCADA.login");
             Class.forName("SCADA.notAllow");
             Class.forName("SCADA.notOk");
             Class.forName("SCADA.ok");
             Class.forName("SCADA.queryData");
             Class.forName("SCADA.rejected");
+            Class.forName("SCADA.sendTask");
             Class.forName("SCADA.sendToField");
             Class.forName("SCADA.sendtoSingleLogin");
             Class.forName("SCADA.signin");

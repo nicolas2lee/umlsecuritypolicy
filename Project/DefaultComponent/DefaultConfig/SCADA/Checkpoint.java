@@ -48,6 +48,10 @@ public class Checkpoint implements RiJStateConcept, Animated {
     
     protected Checkpoint.p_check_cen_C p_check_cen;		//## ignore 
     
+    protected String currentUser;		//## attribute currentUser 
+    
+    protected String validUser;		//## attribute validUser 
+    
     protected Rights itsRights;		//## link itsRights 
     
     protected Securitypolicy itsSecuritypolicy;		//## link itsSecuritypolicy 
@@ -58,7 +62,7 @@ public class Checkpoint implements RiJStateConcept, Animated {
     public static final int RiJNonState=0;
     public static final int ValidPolicy=1;
     public static final int sentToPolicy=2;
-    public static final int sentToCheckpoint=3;
+    public static final int sentToCheckRight=3;
     public static final int RightValid=4;
     public static final int RightInvalid=5;
     public static final int Idle=6;
@@ -240,6 +244,26 @@ public class Checkpoint implements RiJStateConcept, Animated {
     //## auto_generated 
     public void deleteP_check_cen() {
         p_check_cen=null;
+    }
+    
+    //## auto_generated 
+    public String getCurrentUser() {
+        return currentUser;
+    }
+    
+    //## auto_generated 
+    public void setCurrentUser(String p_currentUser) {
+        currentUser = p_currentUser;
+    }
+    
+    //## auto_generated 
+    public String getValidUser() {
+        return validUser;
+    }
+    
+    //## auto_generated 
+    public void setValidUser(String p_validUser) {
+        validUser = p_validUser;
     }
     
     //## auto_generated 
@@ -443,9 +467,9 @@ public class Checkpoint implements RiJStateConcept, Animated {
                     ValidPolicy_add(animStates);
                 }
                 break;
-                case sentToCheckpoint:
+                case sentToCheckRight:
                 {
-                    sentToCheckpoint_add(animStates);
+                    sentToCheckRight_add(animStates);
                 }
                 break;
                 case IdentificationRight:
@@ -495,9 +519,9 @@ public class Checkpoint implements RiJStateConcept, Animated {
                     res = ValidPolicy_takeEvent(id);
                 }
                 break;
-                case sentToCheckpoint:
+                case sentToCheckRight:
                 {
-                    res = sentToCheckpoint_takeEvent(id);
+                    res = sentToCheckRight_takeEvent(id);
                 }
                 break;
                 case IdentificationRight:
@@ -532,8 +556,8 @@ public class Checkpoint implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
-        public void sentToCheckpoint_add(AnimStates animStates) {
-            animStates.add("ROOT.sentToCheckpoint");
+        public void sentToCheckRight_add(AnimStates animStates) {
+            animStates.add("ROOT.sentToCheckRight");
         }
         
         //## statechart_method 
@@ -640,6 +664,13 @@ public class Checkpoint implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
+        public void sentToCheckRight_exit() {
+            popNullConfig();
+            sentToCheckRightExit();
+            animInstance().notifyStateExited("ROOT.sentToCheckRight");
+        }
+        
+        //## statechart_method 
         public void IdentificationRight_enter() {
             animInstance().notifyStateEntered("ROOT.IdentificationRight");
             rootState_subState = IdentificationRight;
@@ -659,19 +690,23 @@ public class Checkpoint implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
-        public void RightValid_entDef() {
-            RightValid_enter();
+        public int ValidPolicyTakecheckRight() {
+            checkRight params = (checkRight) event;
+            int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
+            animInstance().notifyTransitionStarted("2");
+            ValidPolicy_exit();
+            //#[ transition 2 
+            getP_check_right().gen(new checkingRights(params.usrid));
+            //#]
+            sentToCheckRight_entDef();
+            animInstance().notifyTransitionEnded("2");
+            res = RiJStateReactive.TAKE_EVENT_COMPLETE;
+            return res;
         }
         
         //## statechart_method 
-        public int sentToCheckpoint_takeEvent(short id) {
-            int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
-            if(event.isTypeOf(RiJEvent.NULL_EVENT_ID))
-                {
-                    res = sentToCheckpointTakeNull();
-                }
-            
-            return res;
+        public void RightValid_entDef() {
+            RightValid_enter();
         }
         
         //## statechart_method 
@@ -720,15 +755,6 @@ public class Checkpoint implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
-        public void sentToCheckpoint_enter() {
-            animInstance().notifyStateEntered("ROOT.sentToCheckpoint");
-            pushNullConfig();
-            rootState_subState = sentToCheckpoint;
-            rootState_active = sentToCheckpoint;
-            sentToCheckpointEnter();
-        }
-        
-        //## statechart_method 
         public int rootState_takeEvent(short id) {
             int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
             return res;
@@ -741,17 +767,6 @@ public class Checkpoint implements RiJStateConcept, Animated {
         //## statechart_method 
         public void Idle_entDef() {
             Idle_enter();
-        }
-        
-        //## statechart_method 
-        public int sentToCheckpointTakeNull() {
-            int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
-            animInstance().notifyTransitionStarted("3");
-            sentToCheckpoint_exit();
-            IdentificationRight_entDef();
-            animInstance().notifyTransitionEnded("3");
-            res = RiJStateReactive.TAKE_EVENT_COMPLETE;
-            return res;
         }
         
         //## statechart_method 
@@ -770,7 +785,6 @@ public class Checkpoint implements RiJStateConcept, Animated {
         
         //## statechart_method 
         public void ValidPolicy_exit() {
-            popNullConfig();
             ValidPolicyExit();
             animInstance().notifyStateExited("ROOT.ValidPolicy");
         }
@@ -778,18 +792,9 @@ public class Checkpoint implements RiJStateConcept, Animated {
         //## statechart_method 
         public void ValidPolicy_enter() {
             animInstance().notifyStateEntered("ROOT.ValidPolicy");
-            pushNullConfig();
             rootState_subState = ValidPolicy;
             rootState_active = ValidPolicy;
             ValidPolicyEnter();
-        }
-        
-        //## statechart_method 
-        public void sentToCheckpointExit() {
-        }
-        
-        //## statechart_method 
-        public void sentToCheckpointEnter() {
         }
         
         //## statechart_method 
@@ -821,11 +826,31 @@ public class Checkpoint implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
+        public int sentToCheckRightTakeNull() {
+            int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
+            animInstance().notifyTransitionStarted("3");
+            sentToCheckRight_exit();
+            IdentificationRight_entDef();
+            animInstance().notifyTransitionEnded("3");
+            res = RiJStateReactive.TAKE_EVENT_COMPLETE;
+            return res;
+        }
+        
+        //## statechart_method 
+        public void sentToCheckRight_enter() {
+            animInstance().notifyStateEntered("ROOT.sentToCheckRight");
+            pushNullConfig();
+            rootState_subState = sentToCheckRight;
+            rootState_active = sentToCheckRight;
+            sentToCheckRightEnter();
+        }
+        
+        //## statechart_method 
         public int ValidPolicy_takeEvent(short id) {
             int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
-            if(event.isTypeOf(RiJEvent.NULL_EVENT_ID))
+            if(event.isTypeOf(checkRight.checkRight_SCADA_id))
                 {
-                    res = ValidPolicyTakeNull();
+                    res = ValidPolicyTakecheckRight();
                 }
             
             return res;
@@ -845,18 +870,12 @@ public class Checkpoint implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
-        public void sentToCheckpoint_exit() {
-            popNullConfig();
-            sentToCheckpointExit();
-            animInstance().notifyStateExited("ROOT.sentToCheckpoint");
-        }
-        
-        //## statechart_method 
         public int sentToPolicyTakeapproved() {
             int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
             animInstance().notifyTransitionStarted("1");
             sentToPolicy_exit();
             //#[ transition 1 
+            validUser = currentUser;
             getP_check_single().gen(new access());
             //#]
             ValidPolicy_entDef();
@@ -901,14 +920,13 @@ public class Checkpoint implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
-        public void Idle_exit() {
-            IdleExit();
-            animInstance().notifyStateExited("ROOT.Idle");
+        public void sentToCheckRightExit() {
         }
         
         //## statechart_method 
-        public void sentToCheckpoint_entDef() {
-            sentToCheckpoint_enter();
+        public void Idle_exit() {
+            IdleExit();
+            animInstance().notifyStateExited("ROOT.Idle");
         }
         
         //## statechart_method 
@@ -917,13 +935,13 @@ public class Checkpoint implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
-        public int ValidPolicyTakeNull() {
+        public int sentToCheckRight_takeEvent(short id) {
             int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
-            animInstance().notifyTransitionStarted("2");
-            ValidPolicy_exit();
-            sentToCheckpoint_entDef();
-            animInstance().notifyTransitionEnded("2");
-            res = RiJStateReactive.TAKE_EVENT_COMPLETE;
+            if(event.isTypeOf(RiJEvent.NULL_EVENT_ID))
+                {
+                    res = sentToCheckRightTakeNull();
+                }
+            
             return res;
         }
         
@@ -949,6 +967,11 @@ public class Checkpoint implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
+        public void sentToCheckRight_entDef() {
+            sentToCheckRight_enter();
+        }
+        
+        //## statechart_method 
         public void sentToPolicyEnter() {
         }
         
@@ -964,12 +987,17 @@ public class Checkpoint implements RiJStateConcept, Animated {
             animInstance().notifyTransitionStarted("0");
             Idle_exit();
             //#[ transition 0 
+            currentUser=params.usrid;
             getP_check_sp().gen(new checkPolicy(params.usrid));
             //#]
             sentToPolicy_entDef();
             animInstance().notifyTransitionEnded("0");
             res = RiJStateReactive.TAKE_EVENT_COMPLETE;
             return res;
+        }
+        
+        //## statechart_method 
+        public void sentToCheckRightEnter() {
         }
         
         //## statechart_method 
@@ -1170,6 +1198,8 @@ public class Checkpoint implements RiJStateConcept, Animated {
     /**  see com.ibm.rational.rhapsody.animation.Animated interface */
     public void addAttributes(AnimAttributes msg) {
         
+        msg.add("currentUser", currentUser);
+        msg.add("validUser", validUser);
     }
     /**  see com.ibm.rational.rhapsody.animation.Animated interface */
     public void addRelations(AnimRelations msg) {

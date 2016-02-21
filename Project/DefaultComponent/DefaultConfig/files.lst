@@ -2,6 +2,7 @@ SCADA/ok.java
 SCADA/SCADA_pkgClass.java
 SCADA/HMI.java
 SCADA/CenterController.java
+SCADA/checkingRights.java
 SCADA/queryData.java
 SCADA/notAllow.java
 SCADA/access.java
@@ -18,9 +19,11 @@ SCADA/checkLogin.java
 SCADA/Securitypolicy.java
 SCADA/DataServer.java
 MainDefaultComponent.java
+SCADA/sendTask.java
 SCADA/Checkpoint.java
 SCADA/rejected.java
 SCADA/checkPolicy.java
+SCADA/checkRight.java
 SCADA/SingleAccessPoint.java
 SCADA/toLogin.java
 SCADA/allow.java

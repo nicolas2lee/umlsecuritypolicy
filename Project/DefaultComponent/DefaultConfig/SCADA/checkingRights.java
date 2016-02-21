@@ -3,9 +3,9 @@
 	Login		: zhengta
 	Component	: DefaultComponent
 	Configuration 	: DefaultConfig
-	Model Element	: queryData
+	Model Element	: checkingRights
 //!	Generated Date	: Sun, 21, Feb 2016 
-	File Path	: DefaultComponent/DefaultConfig/SCADA/queryData.java
+	File Path	: DefaultComponent/DefaultConfig/SCADA/checkingRights.java
 *********************************************************************/
 
 package SCADA;
@@ -18,36 +18,36 @@ import com.ibm.rational.rhapsody.oxf.RiJEvent;
 import com.ibm.rational.rhapsody.animcom.animMessages.*;
 
 //----------------------------------------------------------------------------
-// SCADA/queryData.java                                                                  
+// SCADA/checkingRights.java                                                                  
 //----------------------------------------------------------------------------
 
 //## package SCADA 
 
 
-//## event queryData(int) 
-public class queryData extends RiJEvent implements AnimatedEvent {
+//## event checkingRights(String) 
+public class checkingRights extends RiJEvent implements AnimatedEvent {
     
-    public static final int queryData_SCADA_id = 8016;		//## ignore 
+    public static final int checkingRights_SCADA_id = 8033;		//## ignore 
     
-    public int task;
+    public String usrid;
     
     // Constructors
     
-    public  queryData() {
-        lId = queryData_SCADA_id;
+    public  checkingRights() {
+        lId = checkingRights_SCADA_id;
     }
-    public  queryData(int p_task) {
-        lId = queryData_SCADA_id;
-        task = p_task;
+    public  checkingRights(String p_usrid) {
+        lId = checkingRights_SCADA_id;
+        usrid = p_usrid;
     }
     
     public boolean isTypeOf(long id) {
-        return (queryData_SCADA_id==id);
+        return (checkingRights_SCADA_id==id);
     }
     
     //#[ ignore
     /** the animated event proxy */
-    public static AnimEventClass animClass = new AnimEventClass("SCADA.queryData");
+    public static AnimEventClass animClass = new AnimEventClass("SCADA.checkingRights");
     /**  see com.ibm.rational.rhapsody.animation.AnimatedEvent interface */
     public Object getFieldValue(java.lang.reflect.Field f, Object userInstance) { 
          Object obj = null;
@@ -61,11 +61,11 @@ public class queryData extends RiJEvent implements AnimatedEvent {
     }
     /**  see com.ibm.rational.rhapsody.animation.AnimatedEvent interface */
     public void addAttributes(AnimAttributes msg) {      
-          msg.add("task", task);
+          msg.add("usrid", usrid);
     }
     public String toString() {
-          String s="queryData(";      
-          s += "task=" + AnimInstance.animToString(task) + " ";
+          String s="checkingRights(";      
+          s += "usrid=" + AnimInstance.animToString(usrid) + " ";
           s += ")";
           return s;
     }
@@ -73,6 +73,6 @@ public class queryData extends RiJEvent implements AnimatedEvent {
     
 }
 /*********************************************************************
-	File Path	: DefaultComponent/DefaultConfig/SCADA/queryData.java
+	File Path	: DefaultComponent/DefaultConfig/SCADA/checkingRights.java
 *********************************************************************/
 

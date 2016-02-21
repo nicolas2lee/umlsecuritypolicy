@@ -3,17 +3,17 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 - m_fileModifyTime = { IRPYRawContainer 
 	- size = 17;
 	- value = "DefaultComponent/DefaultConfig/SCADA/CenterController.java" 2.21.2016::22:4:49
-	"DefaultComponent/DefaultConfig/SCADA/Checkpoint.java" 2.21.2016::22:22:54
+	"DefaultComponent/DefaultConfig/SCADA/Checkpoint.java" 2.21.2016::22:44:24
 	"DefaultComponent/DefaultConfig/SCADA/DataServer.java" 2.21.2016::21:4:3
 	"DefaultComponent/DefaultConfig/SCADA/FieldService.java" 2.21.2016::21:4:3
 	"DefaultComponent/DefaultConfig/SCADA/FieldUnit.java" 2.21.2016::21:4:3
-	"DefaultComponent/DefaultConfig/SCADA/HMI.java" 2.21.2016::22:22:54
+	"DefaultComponent/DefaultConfig/SCADA/HMI.java" 2.21.2016::22:46:56
 	"DefaultComponent/DefaultConfig/SCADA/LocalController.java" 2.21.2016::21:4:3
 	"DefaultComponent/DefaultConfig/SCADA/Network.java" 2.21.2016::21:4:3
-	"DefaultComponent/DefaultConfig/SCADA/Rights.java" 2.21.2016::22:4:49
+	"DefaultComponent/DefaultConfig/SCADA/Rights.java" 2.21.2016::22:46:35
 	"DefaultComponent/DefaultConfig/SCADA/SCADA_pkgClass.java" 2.21.2016::21:4:3
 	"DefaultComponent/DefaultConfig/SCADA/Securitypolicy.java" 2.21.2016::22:22:54
-	"DefaultComponent/DefaultConfig/SCADA/SingleAccessPoint.java" 2.21.2016::22:23:15
+	"DefaultComponent/DefaultConfig/SCADA/SingleAccessPoint.java" 2.21.2016::22:43:35
 	"DefaultComponent/DefaultConfig/SecurityPattern/Checkpoint.java" 2.21.2016::21:38:29
 	"DefaultComponent/DefaultConfig/SecurityPattern/Rights.java" 2.21.2016::21:4:3
 	"DefaultComponent/DefaultConfig/SecurityPattern/SecurityPattern_pkgClass.java" 2.21.2016::21:4:4
@@ -30,7 +30,7 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "Rights";
 	- _id = GUID 5274f857-1fe1-4eb1-ba5f-ac82f5817bc5;
 }
-- genTime = 2.21.2016::22:4:50;
+- genTime = 2.21.2016::22:46:35;
 - hElement = { IHandle 
 	- _m2Class = "IClass";
 	- _filename = "SCADA.sbs";
@@ -48,7 +48,7 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "SingleAccessPoint";
 	- _id = GUID 7f501f9b-d017-4bb8-8f96-9a451068878e;
 }
-- genTime = 2.21.2016::22:23:15;
+- genTime = 2.21.2016::22:43:36;
 - hElement = { IHandle 
 	- _m2Class = "IClass";
 	- _filename = "SCADA.sbs";
@@ -57,7 +57,7 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "HMI";
 	- _id = GUID 346b66c7-353f-4821-b13f-4463e17bded9;
 }
-- genTime = 2.21.2016::22:22:54;
+- genTime = 2.21.2016::22:46:56;
 - hElement = { IHandle 
 	- _m2Class = "IClass";
 	- _filename = "SCADA.sbs";
@@ -75,7 +75,7 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "SCADA";
 	- _id = GUID 7a8bbae1-6414-4231-8285-c6795adb92a7;
 }
-- genTime = 2.21.2016::22:22:54;
+- genTime = 2.21.2016::22:46:35;
 - hElement = { IHandle 
 	- _m2Class = "IClass";
 	- _filename = "SCADA.sbs";
@@ -129,7 +129,7 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "Checkpoint";
 	- _id = GUID e3ceba6d-785e-404b-8c5f-c0db235ed9af;
 }
-- genTime = 2.21.2016::22:22:54;
+- genTime = 2.21.2016::22:44:25;
 - hElement = { IHandle 
 	- _m2Class = "ICodeGenConfigInfo";
 	- _filename = "DefaultComponent.cmp";
@@ -138,7 +138,7 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "DefaultComponent\\DefaultConfig";
 	- _id = GUID b9513818-8623-45c8-9a36-4928d8fa7e28;
 }
-- genTime = 2.21.2016::22:23:18;
+- genTime = 2.21.2016::22:46:56;
 - hElement = { IHandle 
 	- _m2Class = "*";
 	- _filename = "";

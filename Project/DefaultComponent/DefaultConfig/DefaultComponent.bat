@@ -33,6 +33,7 @@ if exist SCADA\ok.class del SCADA\ok.class
 if exist SCADA\SCADA_pkgClass.class del SCADA\SCADA_pkgClass.class
 if exist SCADA\HMI.class del SCADA\HMI.class
 if exist SCADA\CenterController.class del SCADA\CenterController.class
+if exist SCADA\checkingRights.class del SCADA\checkingRights.class
 if exist SCADA\queryData.class del SCADA\queryData.class
 if exist SCADA\notAllow.class del SCADA\notAllow.class
 if exist SCADA\access.class del SCADA\access.class
@@ -49,9 +50,11 @@ if exist SCADA\checkLogin.class del SCADA\checkLogin.class
 if exist SCADA\Securitypolicy.class del SCADA\Securitypolicy.class
 if exist SCADA\DataServer.class del SCADA\DataServer.class
 if exist MainDefaultComponent.class del MainDefaultComponent.class
+if exist SCADA\sendTask.class del SCADA\sendTask.class
 if exist SCADA\Checkpoint.class del SCADA\Checkpoint.class
 if exist SCADA\rejected.class del SCADA\rejected.class
 if exist SCADA\checkPolicy.class del SCADA\checkPolicy.class
+if exist SCADA\checkRight.class del SCADA\checkRight.class
 if exist SCADA\SingleAccessPoint.class del SCADA\SingleAccessPoint.class
 if exist SCADA\toLogin.class del SCADA\toLogin.class
 if exist SCADA\allow.class del SCADA\allow.class

@@ -308,22 +308,11 @@ public class Rights implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
-        public int IdleTakeNull() {
-            int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
-            animInstance().notifyTransitionStarted("0");
-            Idle_exit();
-            CheckRights_entDef();
-            animInstance().notifyTransitionEnded("0");
-            res = RiJStateReactive.TAKE_EVENT_COMPLETE;
-            return res;
-        }
-        
-        //## statechart_method 
         public int Idle_takeEvent(short id) {
             int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
-            if(event.isTypeOf(RiJEvent.NULL_EVENT_ID))
+            if(event.isTypeOf(checkingRights.checkingRights_SCADA_id))
                 {
-                    res = IdleTakeNull();
+                    res = IdleTakecheckingRights();
                 }
             
             return res;
@@ -332,7 +321,6 @@ public class Rights implements RiJStateConcept, Animated {
         //## statechart_method 
         public void Idle_enter() {
             animInstance().notifyStateEntered("ROOT.Idle");
-            pushNullConfig();
             rootState_subState = Idle;
             rootState_active = Idle;
             IdleEnter();
@@ -387,6 +375,18 @@ public class Rights implements RiJStateConcept, Animated {
         }
         
         //## statechart_method 
+        public int IdleTakecheckingRights() {
+            checkingRights params = (checkingRights) event;
+            int res = RiJStateReactive.TAKE_EVENT_NOT_CONSUMED;
+            animInstance().notifyTransitionStarted("0");
+            Idle_exit();
+            CheckRights_entDef();
+            animInstance().notifyTransitionEnded("0");
+            res = RiJStateReactive.TAKE_EVENT_COMPLETE;
+            return res;
+        }
+        
+        //## statechart_method 
         public void IdleEnter() {
         }
         
@@ -410,7 +410,6 @@ public class Rights implements RiJStateConcept, Animated {
         
         //## statechart_method 
         public void Idle_exit() {
-            popNullConfig();
             IdleExit();
             animInstance().notifyStateExited("ROOT.Idle");
         }
