@@ -1,0 +1,234 @@
+I-Logix-RPY-Archive version 8.10.0 * 6930133
+{ CGEMdiWorkspace 
+	- stubList = { IRPYRawContainer 
+		- size = 0;
+	}
+	- isLoadOnDemand = 0;
+	- myViewsWithID = { IRPYRawContainer 
+		- size = 7;
+		- value = 
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -31;
+				- m_nLeft = 156;
+				- m_nTop = 156;
+				- m_nRight = 739;
+				- m_nBottom = 602;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "SCADA.sbs";
+				- _subsystem = "SCADA";
+				- _class = "CenterController";
+				- _name = "StatechartDiagram";
+				- _id = GUID f576a950-f3d3-44ed-a2fe-3a4164a5937b;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 546 386 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 2;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 2;
+				- m_showCmd = 3;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -31;
+				- m_nLeft = 208;
+				- m_nTop = 208;
+				- m_nRight = 791;
+				- m_nBottom = 654;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "SCADA.sbs";
+				- _subsystem = "SCADA";
+				- _class = "Checkpoint";
+				- _name = "StatechartDiagram";
+				- _id = GUID f312a6d0-740d-4d87-acfe-0de6dd87508a;
+			}
+			- _UpLeft = 70 60 ;
+			- _DownRight = 839 646 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 1;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -31;
+				- m_nLeft = 0;
+				- m_nTop = 0;
+				- m_nRight = 609;
+				- m_nBottom = 393;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "SCADA.sbs";
+				- _subsystem = "SCADA";
+				- _class = "HMI";
+				- _name = "StatechartDiagram";
+				- _id = GUID 3fa0d07e-a9ae-4603-b6dd-e01ab35a0437;
+			}
+			- _UpLeft = 0 70 ;
+			- _DownRight = 572 403 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 4;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -31;
+				- m_nLeft = 26;
+				- m_nTop = 26;
+				- m_nRight = 635;
+				- m_nBottom = 419;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IMSC";
+				- _filename = "SCADA.sbs";
+				- _subsystem = "SCADA";
+				- _class = "";
+				- _name = "MainDiag";
+				- _id = GUID 0f00f483-54ef-47b9-98d6-ad4bc0fc328c;
+			}
+			- _UpLeft = 35 0 ;
+			- _DownRight = 607 313 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 3;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -31;
+				- m_nLeft = 0;
+				- m_nTop = 0;
+				- m_nRight = 634;
+				- m_nBottom = 325;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "SCADA.sbs";
+				- _subsystem = "SCADA";
+				- _class = "Rights";
+				- _name = "StatechartDiagram";
+				- _id = GUID e4f421bb-f5a1-4cc7-9333-8850d506ac61;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 597 265 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 0;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -31;
+				- m_nLeft = 156;
+				- m_nTop = 156;
+				- m_nRight = 761;
+				- m_nBottom = 568;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "SCADA.sbs";
+				- _subsystem = "SCADA";
+				- _class = "Securitypolicy";
+				- _name = "StatechartDiagram";
+				- _id = GUID 14bf8cfe-9602-469f-8829-b85c719a53c5;
+			}
+			- _UpLeft = 0 20 ;
+			- _DownRight = 568 372 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 6;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 2;
+				- m_showCmd = 2;
+				- m_ptMinPositionX = 0;
+				- m_ptMinPositionY = 453;
+				- m_ptMaxPositionX = -8;
+				- m_ptMaxPositionY = -31;
+				- m_nLeft = 182;
+				- m_nTop = 182;
+				- m_nRight = 791;
+				- m_nBottom = 575;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "SCADA.sbs";
+				- _subsystem = "SCADA";
+				- _class = "SingleAccessPoint";
+				- _name = "StatechartDiagram";
+				- _id = GUID 81313c25-36bd-4549-8f3c-0ba82a34d3d8;
+			}
+			- _UpLeft = 0 30 ;
+			- _DownRight = 769 490 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 5;
+		}
+	}
+	- _fullName = "U:\\semestre5\\uv5.6\\umlsecuritypolicy\\Project\\Project";
+	- m_SearchScopeList = { IRPYRawContainer 
+		- size = 0;
+	}
+	- bUsingCustomBrowserView = 0;
+	- bUsingQueries = 0;
+	- bApplyOnDiagrams = 0;
+	- liQueryIDs = { IRPYRawContainer 
+		- size = 0;
+	}
+	- liElementTypes = { IRPYRawContainer 
+		- size = 0;
+	}
+
+	- m_favoritesTree = {
+		count=1;
+		{ - favoritesItem
+			generation = 0;
+			name = Favorites;
+			idOrFolder = folder;
+		}
+	}
+
+	- mapOslcRmActiveCollections = { IRPYRawContainer 
+		- size = 0;
+	}
+}
+

@@ -1,0 +1,151 @@
+I-Logix-RPY-Archive version 8.10.0 * 6930133
+
+- m_fileModifyTime = { IRPYRawContainer 
+	- size = 17;
+	- value = "DefaultComponent/DefaultConfig/SCADA/CenterController.java" 2.21.2016::22:4:49
+	"DefaultComponent/DefaultConfig/SCADA/Checkpoint.java" 2.21.2016::22:22:54
+	"DefaultComponent/DefaultConfig/SCADA/DataServer.java" 2.21.2016::21:4:3
+	"DefaultComponent/DefaultConfig/SCADA/FieldService.java" 2.21.2016::21:4:3
+	"DefaultComponent/DefaultConfig/SCADA/FieldUnit.java" 2.21.2016::21:4:3
+	"DefaultComponent/DefaultConfig/SCADA/HMI.java" 2.21.2016::22:22:54
+	"DefaultComponent/DefaultConfig/SCADA/LocalController.java" 2.21.2016::21:4:3
+	"DefaultComponent/DefaultConfig/SCADA/Network.java" 2.21.2016::21:4:3
+	"DefaultComponent/DefaultConfig/SCADA/Rights.java" 2.21.2016::22:4:49
+	"DefaultComponent/DefaultConfig/SCADA/SCADA_pkgClass.java" 2.21.2016::21:4:3
+	"DefaultComponent/DefaultConfig/SCADA/Securitypolicy.java" 2.21.2016::22:22:54
+	"DefaultComponent/DefaultConfig/SCADA/SingleAccessPoint.java" 2.21.2016::22:23:15
+	"DefaultComponent/DefaultConfig/SecurityPattern/Checkpoint.java" 2.21.2016::21:38:29
+	"DefaultComponent/DefaultConfig/SecurityPattern/Rights.java" 2.21.2016::21:4:3
+	"DefaultComponent/DefaultConfig/SecurityPattern/SecurityPattern_pkgClass.java" 2.21.2016::21:4:4
+	"DefaultComponent/DefaultConfig/SecurityPattern/Securitypolicy.java" 2.21.2016::21:30:37
+	"DefaultComponent/DefaultConfig/SecurityPattern/SingleAccessPoint.java" 2.21.2016::21:56:5
+	
+}
+- size = 14;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = "SCADA.sbs";
+	- _subsystem = "SCADA";
+	- _class = "";
+	- _name = "Rights";
+	- _id = GUID 5274f857-1fe1-4eb1-ba5f-ac82f5817bc5;
+}
+- genTime = 2.21.2016::22:4:50;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = "SCADA.sbs";
+	- _subsystem = "SCADA";
+	- _class = "";
+	- _name = "LocalController";
+	- _id = GUID a8be268a-f6aa-47d5-b170-2bb9bb664180;
+}
+- genTime = 2.21.2016::21:4:4;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = "SCADA.sbs";
+	- _subsystem = "SCADA";
+	- _class = "";
+	- _name = "SingleAccessPoint";
+	- _id = GUID 7f501f9b-d017-4bb8-8f96-9a451068878e;
+}
+- genTime = 2.21.2016::22:23:15;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = "SCADA.sbs";
+	- _subsystem = "SCADA";
+	- _class = "";
+	- _name = "HMI";
+	- _id = GUID 346b66c7-353f-4821-b13f-4463e17bded9;
+}
+- genTime = 2.21.2016::22:22:54;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = "SCADA.sbs";
+	- _subsystem = "SCADA";
+	- _class = "";
+	- _name = "FieldUnit";
+	- _id = GUID 737e3e99-69e9-4f95-93d0-f25973397dba;
+}
+- genTime = 2.21.2016::21:4:4;
+- hElement = { IHandle 
+	- _m2Class = "ISubsystem";
+	- _filename = "SCADA.sbs";
+	- _subsystem = "";
+	- _class = "";
+	- _name = "SCADA";
+	- _id = GUID 7a8bbae1-6414-4231-8285-c6795adb92a7;
+}
+- genTime = 2.21.2016::22:22:54;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = "SCADA.sbs";
+	- _subsystem = "SCADA";
+	- _class = "";
+	- _name = "CenterController";
+	- _id = GUID 4f8abb0e-945b-4785-ad4a-f46363894bc7;
+}
+- genTime = 2.21.2016::22:6:9;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = "SCADA.sbs";
+	- _subsystem = "SCADA";
+	- _class = "";
+	- _name = "FieldService";
+	- _id = GUID 15b4c96e-3744-46be-b6d7-32731fe31e78;
+}
+- genTime = 2.21.2016::21:4:4;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = "SCADA.sbs";
+	- _subsystem = "SCADA";
+	- _class = "";
+	- _name = "Network";
+	- _id = GUID a42675d2-61b9-409c-ac6c-26d6eb4b82cb;
+}
+- genTime = 2.21.2016::21:24:16;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = "SCADA.sbs";
+	- _subsystem = "SCADA";
+	- _class = "";
+	- _name = "DataServer";
+	- _id = GUID 462473d4-88aa-4292-b52a-06f315d3b076;
+}
+- genTime = 2.21.2016::21:24:16;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = "SCADA.sbs";
+	- _subsystem = "SCADA";
+	- _class = "";
+	- _name = "Securitypolicy";
+	- _id = GUID 131ea1a9-b7f0-49a4-aed4-a350b2cb2674;
+}
+- genTime = 2.21.2016::22:22:54;
+- hElement = { IHandle 
+	- _m2Class = "IClass";
+	- _filename = "SCADA.sbs";
+	- _subsystem = "SCADA";
+	- _class = "";
+	- _name = "Checkpoint";
+	- _id = GUID e3ceba6d-785e-404b-8c5f-c0db235ed9af;
+}
+- genTime = 2.21.2016::22:22:54;
+- hElement = { IHandle 
+	- _m2Class = "ICodeGenConfigInfo";
+	- _filename = "DefaultComponent.cmp";
+	- _subsystem = "";
+	- _class = "";
+	- _name = "DefaultComponent\\DefaultConfig";
+	- _id = GUID b9513818-8623-45c8-9a36-4928d8fa7e28;
+}
+- genTime = 2.21.2016::22:23:18;
+- hElement = { IHandle 
+	- _m2Class = "*";
+	- _filename = "";
+	- _subsystem = "";
+	- _class = "";
+	- _name = "";
+	- _id = GUID 0040e2dc-d1ec-4c39-99bb-ea7618e4f214;
+}
+- genTime = 2.21.2016::21:56:5;
+
