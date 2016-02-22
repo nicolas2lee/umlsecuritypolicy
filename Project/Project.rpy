@@ -3,7 +3,7 @@ I-Logix-RPY-Archive version 8.10.0 Java 6930133
 	- _id = GUID de9db07b-8db9-4206-ac6f-7d97cdf97956;
 	- _myState = 8192;
 	- _name = "Project";
-	- _modifiedTimeWeak = 2.21.2016::22:23:20;
+	- _modifiedTimeWeak = 2.22.2016::22:34:52;
 	- _lastID = 1;
 	- _UserColors = { IRPYRawContainer 
 		- size = 16;
@@ -11,10 +11,10 @@ I-Logix-RPY-Archive version 8.10.0 Java 6930133
 	}
 	- _defaultSubsystem = { ISubsystemHandle 
 		- _m2Class = "ISubsystem";
-		- _filename = "SCADA.sbs";
+		- _filename = "SecureSCADA.sbs";
 		- _subsystem = "";
 		- _class = "";
-		- _name = "SCADA";
+		- _name = "SecureSCADA";
 		- _id = GUID 7a8bbae1-6414-4231-8285-c6795adb92a7;
 	}
 	- _component = { IHandle 
@@ -49,7 +49,7 @@ I-Logix-RPY-Archive version 8.10.0 Java 6930133
 		- size = 2;
 		- value = 
 		{ ISubsystem 
-			- fileName = "SCADA";
+			- fileName = "SecureSCADA";
 			- _id = GUID 7a8bbae1-6414-4231-8285-c6795adb92a7;
 		}
 		{ IProfile 

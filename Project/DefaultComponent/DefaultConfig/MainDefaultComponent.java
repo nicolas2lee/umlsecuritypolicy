@@ -4,13 +4,13 @@
 	Component	: DefaultComponent
 	Configuration 	: DefaultConfig
 	Model Element	: DefaultConfig
-//!	Generated Date	: Sun, 21, Feb 2016 
+//!	Generated Date	: Mon, 22, Feb 2016 
 	File Path	: DefaultComponent/DefaultConfig/MainDefaultComponent.java
 *********************************************************************/
 
 
 //## auto_generated
-import SCADA.*;
+import SecureSCADA.*;
 //## auto_generated
 import com.ibm.rational.rhapsody.oxf.*;
 //## auto_generated
@@ -32,24 +32,35 @@ public class MainDefaultComponent {
       // Registering Events 
       try {
         
-            Class.forName("SCADA.access");
-            Class.forName("SCADA.allow");
-            Class.forName("SCADA.approved");
-            Class.forName("SCADA.checkingRights");
-            Class.forName("SCADA.checkLogin");
-            Class.forName("SCADA.checkPolicy");
-            Class.forName("SCADA.checkRight");
-            Class.forName("SCADA.login");
-            Class.forName("SCADA.notAllow");
-            Class.forName("SCADA.notOk");
-            Class.forName("SCADA.ok");
-            Class.forName("SCADA.queryData");
-            Class.forName("SCADA.rejected");
-            Class.forName("SCADA.sendTask");
-            Class.forName("SCADA.sendToField");
-            Class.forName("SCADA.sendtoSingleLogin");
-            Class.forName("SCADA.signin");
-            Class.forName("SCADA.toLogin");
+            Class.forName("SecureSCADA.access");
+            Class.forName("SecureSCADA.allow");
+            Class.forName("SecureSCADA.approved");
+            Class.forName("SecureSCADA.approvedTask");
+            Class.forName("SecureSCADA.backRights");
+            Class.forName("SecureSCADA.checkingRights");
+            Class.forName("SecureSCADA.checkLogin");
+            Class.forName("SecureSCADA.checkPolicy");
+            Class.forName("SecureSCADA.checkRight");
+            Class.forName("SecureSCADA.connecttoNet");
+            Class.forName("SecureSCADA.doneS");
+            Class.forName("SecureSCADA.doneService");
+            Class.forName("SecureSCADA.login");
+            Class.forName("SecureSCADA.notAllow");
+            Class.forName("SecureSCADA.notOk");
+            Class.forName("SecureSCADA.ok");
+            Class.forName("SecureSCADA.queryData");
+            Class.forName("SecureSCADA.refusedTask");
+            Class.forName("SecureSCADA.rejected");
+            Class.forName("SecureSCADA.rejectedRights");
+            Class.forName("SecureSCADA.requestService");
+            Class.forName("SecureSCADA.requestTask");
+            Class.forName("SecureSCADA.sendTask");
+            Class.forName("SecureSCADA.sendTaskToDataserver");
+            Class.forName("SecureSCADA.sendTaskToField");
+            Class.forName("SecureSCADA.sendToField");
+            Class.forName("SecureSCADA.sendtoSingleLogin");
+            Class.forName("SecureSCADA.signin");
+            Class.forName("SecureSCADA.toLogin");
     
         // Registering Static Classes 
         
@@ -61,7 +72,7 @@ public class MainDefaultComponent {
     }
     //#]
     
-    private SCADA_pkgClass initializer_SCADA = new SCADA_pkgClass(RiJMainThread.instance());
+    private SecureSCADA_pkgClass initializer_SecureSCADA = new SecureSCADA_pkgClass(RiJMainThread.instance());
     
     //## configuration DefaultComponent::DefaultConfig 
     public static void main(String[] args) {
