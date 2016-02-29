@@ -1,0 +1,169 @@
+
+//---------------------------------------------------------
+//     user Id               
+//---------------------------------------------------------	
+
+predicate User_ADM_id is {{CheckPoint}1:usrid = 111}
+predicate User_CC_id is {{CheckPoint}1:usrid = 222}
+predicate User_LC_id is {{CheckPoint}1:usrid = 333}
+predicate User_UNK_id is {{CheckPoint}1:usrid = 444}
+
+event evt_UserADM_id is {User_ADM_id becomes true}
+event evt_UserCC_id is {User_CC_id becomes true}
+event evt_UserLC_id is {User_LC_id becomes true}
+event evt_UserUNK_id is {User_UNK_id becomes true}
+
+
+//---------------------------------------------------------
+//     login policy               
+//---------------------------------------------------------	
+predicate ADM_policy is {{SecurityPolicy}1@Valid_SP}
+predicate CC_policy is {{SecurityPolicy}1@Valid_SP}
+predicate LC_policy is {{SecurityPolicy}1@Valid_SP}
+predicate UNK_policy is {{SecurityPolicy}1@InValid_SP}
+
+event evt_ADM_policy is {ADM_policy becomes true}
+event evt_CC_policy is {CC_policy becomes true}
+event evt_LC_policy is {LC_policy becomes true}
+event evt_UNK_policy is {UNK_policy becomes true}
+
+
+//---------------------------------------------------------
+//     rights               
+//---------------------------------------------------------
+predicate ADM_right is {{CheckPoint}1:currentRight = 1111}
+predicate CC_right is {{CheckPoint}1:currentRight = 1100}
+predicate LC_right is {{CheckPoint}1:currentRight = 11}
+predicate UNK_right is {{CheckPoint}1:currentRight = 0}
+
+event evt_ADM_right is {CC_right becomes true}
+event evt_CC_right is {CC_right becomes true}
+event evt_LC_right is {LC_right becomes true}
+event evt_UNK_right is {UNK_right becomes true}
+//---------------------------------------------------------
+//     tasks              
+//---------------------------------------------------------
+predicate centerRW_task is {{CheckPoint}1:taskAndUsrid.task = 1100}
+predicate localRW_task is {{CheckPoint}1:taskAndUsrid.task = 11}
+predicate localR_task is {{CheckPoint}1:taskAndUsrid.task = 10}
+
+event evt_centerRW_task is {centerRW_task becomes true}
+event evt_localRW_task is {localRW_task becomes true}
+event evt_localR_task is {localR_task becomes true}
+//---------------------------------------------------------
+//     doing tasks              
+//---------------------------------------------------------
+predicate ADM_centerTask_rw is {{CheckPoint}1@DoingCenterTask_CP}
+predicate ADM_locaTask_rw is {{CheckPoint}1@DoingLocalTask_CP}
+
+predicate CC_centerTask_rw is {{CheckPoint}1@DoingCenterTask_CP}
+predicate CC_localTask_r is {{CheckPoint}1@DoingLocalTask_CP}
+predicate CC_localTask_rw is {{CheckPoint}1@RejectedTask_CP}
+
+predicate LC_localTask_r is {{CheckPoint}1@DoingLocalTask_CP}
+predicate LC_localTask_rw is {{CheckPoint}1@RejectedTask_CP}
+predicate LC_centerTask_rw is {{CheckPoint}1@RejectedTask_CP}
+
+event evt_ADM_centerTask_rw is {ADM_centerTask_rw becomes true}
+event evt_ADM_locaTask_rw is {ADM_locaTask_rw becomes true}
+
+event evt_CC_centerTask_rw is {CC_centerTask_rw becomes true}
+event evt_CC_localTask_r is {CC_localTask_r becomes true}
+event evt_CC_localTask_rw is {CC_localTask_rw becomes true}
+
+event evt_LC_centerTask_rw is {LC_centerTask_rw becomes true}
+event evt_LC_localTask_r is {LC_localTask_r becomes true}
+event evt_LC_localTask_rw is {LC_localTask_rw becomes true}
+
+
+property pte_Center_ADM is
+{
+	start--/ / evt_UserADM_id/ -> wait0;
+	wait0--/ / evt_ADM_policy/ -> wait1;
+	wait1--/ / evt_ADM_right/ -> wait2;
+	wait2--/ / evt_centerRW_task/ -> wait3;
+	wait3--/ / evt_ADM_centerTask_rw/ -> success 
+}
+
+property pte_Local_ADM is
+{
+	start--/ / evt_UserADM_id/ -> wait0;
+	wait0--/ / evt_ADM_policy/ -> wait1;
+	wait1--/ / evt_ADM_right/ -> wait2;
+	wait2--/ / evt_localRW_task/ -> wait3;
+	wait3--/ / evt_ADM_locaTask_rw/ -> success
+}
+property pte_Center_CC is
+{
+	start--/ / evt_UserCC_id/ -> wait0;
+	wait0--/ / evt_CC_policy/ -> wait1;
+	wait1--/ / evt_CC_right/ -> wait2;
+	wait2--/ / evt_centerRW_task/ -> wait3;
+	wait3--/ / evt_CC_centerTask_rw/ -> success
+}
+property pte_Localr_CC is
+{
+	start--/ / evt_UserCC_id/ -> wait0;
+	wait0--/ / evt_CC_policy/ -> wait1;
+	wait1--/ / evt_CC_right/ -> wait2;
+	wait2--/ / evt_localR_task/ -> wait3;
+	wait3--/ / evt_CC_localTask_r/ -> success
+}
+property pte_Localrw_CC is
+{
+	start--/ / evt_UserCC_id/ -> wait0;
+	wait0--/ / evt_CC_policy/ -> wait1;
+	wait1--/ / evt_CC_right/ -> wait2;
+	wait2--/ / evt_localRW_task/ -> wait3;
+	wait3--/ / evt_CC_localTask_rw/ -> success
+}
+
+property pte_Center_LC is
+{
+	start--/ / evt_UserLC_id / -> wait0;
+	wait0--/ / evt_LC_policy/ -> wait1;
+	wait1--/ / evt_LC_right/ -> wait2;
+	wait2--/ / evt_centerRW_task/ -> wait3;
+	wait3--/ / evt_LC_centerTask_rw/ -> success
+}
+
+property pte_Localr_LC is
+{
+	start--/ / evt_UserLC_id / -> wait0;
+	wait0--/ / evt_LC_policy/ -> wait1;
+	wait1--/ / evt_LC_right/ -> wait2;
+	wait2--/ / evt_localR_task/ -> wait3;
+	wait3--/ / evt_LC_localTask_r/ -> success
+}
+
+property pte_Localrw_LC is
+{
+	start--/ / evt_UserLC_id / -> wait0;
+	wait0--/ / evt_LC_policy/ -> wait1;
+	wait1--/ / evt_LC_right/ -> wait2;
+	wait2--/ / evt_localRW_task/ -> wait3;
+	wait3--/ / evt_LC_localTask_rw/ -> success
+}
+
+property pte_Access_UNK is
+{
+	start--/ / evt_UserUNK_id / -> wait0;
+	wait0--/ / evt_UNK_policy/ -> success
+}
+/*------------------ CDL --------------------------*/
+cdl cdl1 is
+{
+	properties  pte_Center_ADM,
+				pte_Local_ADM,
+				pte_Center_CC,
+				pte_Localr_CC,
+				pte_Localrw_CC,
+				pte_Center_LC,
+				pte_Localr_LC,
+				pte_Localrw_LC,
+				pte_Access_UNK
+				
+				
+				
+	main is { skip }
+}

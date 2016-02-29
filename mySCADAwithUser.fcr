@@ -1,0 +1,627 @@
+type Login is union
+	userLoginID of 0..3
+end union
+
+type DoingTask is union
+	tasknumber of 0..3
+end union
+
+type Logins is queue 2 of Login
+type DoingTasks is queue 2 of DoingTask
+//---------------------------------------------------------
+//                     HMI
+//---------------------------------------------------------
+
+type Type_TaskAndUsrid is record
+	task : int,
+	usrid : int
+end
+
+process HMI[sendtoSingleLogin : out int,
+			accessHMI : in none,
+			rejectedAccessHMI : in none,
+			sendTask : out Type_TaskAndUsrid,
+			backDataToHMI : in none,
+			backRejectedTaskHMI : in none,
+			backLocalTaskHMI : in none,
+			rejectedUser : out none,
+			approvedUser : out none,
+			failTasktoUser : out none,
+			sucessLocalTask : out none,
+			successCenterTask: out none](&logins :  read write Logins, &doingTasks : read write DoingTasks)
+is
+
+states
+	Idle_HMI, sentRequest_HMI, signedIn_HMI, sentTask_HMI, WaitTaskFeedback_HMI,
+	RejectedTask_HMI, DoneWithDataServer_HMI, DoneLocalTask_HMI, approvedUser_HMI, rejectedSignin_HMI
+var
+	uusrid : int,
+	login : Login,
+	currentTask : DoingTask,
+	ttask : int,
+	taskAndUsrid : Type_TaskAndUsrid
+init
+	uusrid := 0;
+	taskAndUsrid := {task = 0, usrid = 0};
+	ttask := -1;
+	to Idle_HMI
+	
+from Idle_HMI
+	on not (empty(logins));
+	login := first logins;
+	logins := dequeue logins;
+	case login of 
+	   userLoginID(0) -> uusrid := 111
+	 | userLoginID(1) -> uusrid := 222
+	 | userLoginID(2) -> uusrid := 333
+	 | userLoginID(3) -> uusrid := 444
+	 end;
+	sendtoSingleLogin ! uusrid;
+	to sentRequest_HMI
+	
+from sentRequest_HMI
+	select
+		accessHMI;
+		to approvedUser_HMI
+	[]
+		rejectedAccessHMI;
+		to rejectedSignin_HMI
+	end
+	
+from approvedUser_HMI
+	approvedUser;
+	to signedIn_HMI
+	
+from rejectedSignin_HMI
+	rejectedUser;
+	to Idle_HMI
+	
+from signedIn_HMI
+	on not (empty(doingTasks));
+	currentTask := first doingTasks;
+	doingTasks := dequeue doingTasks;
+	case currentTask of 
+	   tasknumber(0) -> ttask := 1100
+	 | tasknumber(1) -> ttask := 1000
+	 | tasknumber(2) -> ttask := 11
+	 | tasknumber(3) -> ttask := 10
+	 end;
+	taskAndUsrid := {usrid = uusrid, task = ttask};
+	sendTask ! taskAndUsrid;
+	to sentTask_HMI
+
+from sentTask_HMI
+	to WaitTaskFeedback_HMI
+	
+	
+from WaitTaskFeedback_HMI
+	select
+		backRejectedTaskHMI;
+		to RejectedTask_HMI
+	[]
+		backDataToHMI;
+		to DoneWithDataServer_HMI
+	[]
+		backLocalTaskHMI;
+		to DoneLocalTask_HMI
+	end
+	
+from DoneLocalTask_HMI
+	sucessLocalTask;
+	to Idle_HMI
+	
+from RejectedTask_HMI
+	failTasktoUser;
+	to Idle_HMI
+	
+from DoneWithDataServer_HMI
+	successCenterTask;
+	to Idle_HMI
+
+//---------------------------------------------------------
+//                     SingleAccessPoint
+//---------------------------------------------------------
+
+process SingleAccessPoint[sendtoSingleLogin : in int,
+						  checkLogin : out int,
+						  access : in none,
+						  rejectedAccess : in none,
+						  accessHMI : out none,
+						  rejectedAccessHMI : out none,
+						  sendTask : in Type_TaskAndUsrid,
+						  sendToCheckRight : out Type_TaskAndUsrid,
+						  backDataToSAP : in none,
+						  backDataToHMI : out none,
+						  backRejectedTask : in none,
+						  backRejectedTaskHMI : out none,
+						  doingLocalTask : in none,
+						  backLocalTaskHMI : out none]
+is
+
+states
+	Idle_SAP, ReceivedRequest_SAP, ReceivedTaskRequest_SAP, sentLoginToCheckpoint_SAP, 
+	sentAccessToHMI, sentRejectedAccessToHMI, WaitTaskFeedback_SAP, backDataToHMI_SAP,
+	sentTaskToCP_SAP, backRejectedTaskToHMI_SAP, backLocalTask_SAP
+	
+var 
+	usrid : int,
+	taskAndUsrid : Type_TaskAndUsrid
+	
+init
+	usrid := 0;
+	taskAndUsrid := {task = 0, usrid = 0};
+	to Idle_SAP
+
+from Idle_SAP
+	select
+		sendtoSingleLogin ? usrid;
+		to ReceivedRequest_SAP
+	[]
+		sendTask ? taskAndUsrid;
+		to ReceivedTaskRequest_SAP
+	end
+
+from ReceivedRequest_SAP
+	checkLogin ! usrid;
+	to sentLoginToCheckpoint_SAP
+	
+from ReceivedTaskRequest_SAP
+	sendToCheckRight ! taskAndUsrid;
+	to sentTaskToCP_SAP
+	
+from sentTaskToCP_SAP
+	
+	to WaitTaskFeedback_SAP
+
+from sentLoginToCheckpoint_SAP
+	select
+		access;
+		to sentAccessToHMI
+	[]
+		rejectedAccess;
+		to sentRejectedAccessToHMI
+	end
+
+from sentAccessToHMI
+	accessHMI;
+	to Idle_SAP
+	
+from WaitTaskFeedback_SAP
+	select
+		backRejectedTask;
+		to backRejectedTaskToHMI_SAP
+	[]
+		backDataToSAP;
+		to backDataToHMI_SAP
+	[]
+		doingLocalTask;
+		to backLocalTask_SAP
+	end
+		
+from backLocalTask_SAP
+	backLocalTaskHMI;
+	to Idle_SAP
+	
+from backRejectedTaskToHMI_SAP
+	backRejectedTaskHMI;
+	to Idle_SAP
+
+from backDataToHMI_SAP
+	backDataToHMI;
+	to Idle_SAP
+	
+from sentRejectedAccessToHMI
+	rejectedAccessHMI;
+	to Idle_SAP
+//=========================================================
+//                     CheckPoint
+//=========================================================
+process CheckPoint[checkLogin : in int, 
+                   checkPolicy : out int,
+				   approved : in none,
+				   rejected : in none,
+				   access : out none,
+				   rejectedAccess : out none,
+				   sendToCheckRight : in Type_TaskAndUsrid,
+				   checkingRight : out int,
+				   backRights : in int,
+				   queryData : out none,
+				   backDataToCP : in none,
+				   backDataToSAP : out none,
+				   backRejectedTask : out none,
+				   sentToNet : out none,
+				   doingLocalTask : out none]
+is
+
+states
+	Idle_CP, receivedRequest_CP, sentToPolicy_CP, ValidPolicy_CP, InValidPolicy_CP, 
+	WaitForTask_CP, CheckRight_CP, CheckTask_CP, DoingTask_CP, RejectedTask_CP, 
+	DoneCenterTask_CP, DoingCenterTask_CP, DoingLocalTask_CP
+var 
+	usrid : int,
+	currentRight : int,
+	taskAndUsrid : Type_TaskAndUsrid
+	
+init
+	usrid := 0;
+	taskAndUsrid := {task = 0, usrid = 0};
+	to Idle_CP
+
+from Idle_CP
+	checkLogin ? usrid;
+	to receivedRequest_CP
+
+from receivedRequest_CP
+	checkPolicy ! usrid;
+	to sentToPolicy_CP
+	
+from sentToPolicy_CP
+	select
+		approved;
+		to ValidPolicy_CP
+	[]
+		rejected;
+		to InValidPolicy_CP
+	end
+	
+from ValidPolicy_CP
+	access;
+	to WaitForTask_CP
+
+from WaitForTask_CP
+	sendToCheckRight ? taskAndUsrid;
+	to CheckRight_CP
+	
+from CheckRight_CP
+	checkingRight ! taskAndUsrid.usrid;
+	to CheckTask_CP
+	
+from CheckTask_CP
+	backRights ? currentRight;
+	case currentRight of 
+		1111 -> to DoingTask_CP //admin do everything
+	|	1100 -> if (taskAndUsrid.task%100 > 0) then 
+					to DoingTask_CP
+				else
+					to RejectedTask_CP
+				end
+	|	10   -> if (taskAndUsrid.task <> 10 ) then
+					to RejectedTask_CP
+				else	
+					to DoingTask_CP
+				end			
+	|   0    ->	to RejectedTask_CP
+	end
+	
+from DoingTask_CP
+	if (taskAndUsrid.task/100 >0) then
+		queryData;
+		to DoingCenterTask_CP
+	else
+		sentToNet;
+		to DoingLocalTask_CP
+	end;
+	to Idle_CP
+
+from DoingLocalTask_CP
+	doingLocalTask;
+	to Idle_CP
+
+from DoingCenterTask_CP
+	backDataToCP;
+	to DoneCenterTask_CP
+
+from DoneCenterTask_CP
+	backDataToSAP;
+	to Idle_CP
+	
+from RejectedTask_CP
+	backRejectedTask;
+	to Idle_CP
+	
+from InValidPolicy_CP
+	rejectedAccess;
+	to Idle_CP
+	
+//---------------------------------------------------------
+//                     Network
+//---------------------------------------------------------
+process Network[sentToNet : in none,
+				arriveLocalcontroller : out none]
+				 
+is
+
+states
+	Idle_NET, sentTaskToLocal_NET
+init
+	to Idle_NET
+
+from Idle_NET
+	sentToNet;
+	to sentTaskToLocal_NET
+	
+from sentTaskToLocal_NET
+	arriveLocalcontroller;
+	to Idle_NET
+	
+//---------------------------------------------------------
+//                     LocalController
+//---------------------------------------------------------
+process LocalController[arriveLocalcontroller : in none,
+						orderLocalService : out none]
+is
+
+states
+	Idle_LC, ControlLocalService_LC
+init
+	to Idle_LC
+	
+from Idle_LC
+	arriveLocalcontroller;
+	to ControlLocalService_LC
+
+from ControlLocalService_LC
+	orderLocalService;
+	to Idle_LC
+//---------------------------------------------------------
+//                    FieldService
+//---------------------------------------------------------
+process FieldService[orderLocalService : in none]
+is
+
+states
+	Idle_FS, doneLocalService_FS
+init
+	to Idle_FS
+
+from Idle_FS
+	orderLocalService;
+	to doneLocalService_FS
+	
+from doneLocalService_FS
+	to Idle_FS
+	
+//---------------------------------------------------------
+//                     DataServer
+//---------------------------------------------------------
+process DataServer[queryData : in none,
+				   backDataToCP : out none]
+is
+
+states
+	Idle_DS, backData_DS
+init
+	to Idle_DS
+
+from Idle_DS
+	queryData;
+	to backData_DS
+	
+from backData_DS
+	backDataToCP;
+	to Idle_DS
+	
+//---------------------------------------------------------
+//                     SecurityPolicy
+//---------------------------------------------------------
+
+process SecurityPolicy[checkPolicy : in int,
+					   approved : out none,
+					   rejected : out none]
+is
+
+states
+	Idle_SP, CheckingPolicy_SP, Valid_SP, InValid_SP 
+var	
+	usrid : int
+
+init
+	usrid := 0;
+	to Idle_SP
+
+from Idle_SP
+	checkPolicy ? usrid;
+	to CheckingPolicy_SP
+
+from CheckingPolicy_SP
+	if (usrid = 111) then
+		// is admin
+		approved;
+		to Valid_SP
+	elsif  (usrid = 222) then
+		// is CC
+		approved;
+		to Valid_SP
+	elsif (usrid = 333) then
+		// is LC
+		approved;
+		to Valid_SP
+	else
+		// is Unknown
+		rejected;
+		to InValid_SP
+	end
+
+from Valid_SP
+	to Idle_SP
+
+from InValid_SP
+	to Idle_SP
+	
+//---------------------------------------------------------
+//                     Rights
+//---------------------------------------------------------
+process Rights[checkingRight : in int,
+			   backRights : out int]
+is
+
+states
+	Idle_RT, CheckingRight_RT
+var
+	usrid : int
+	
+init
+	usrid := 0;
+	to Idle_RT
+
+from Idle_RT
+	checkingRight ? usrid;
+	to CheckingRight_RT
+	
+from CheckingRight_RT
+	case usrid of
+		111 -> backRights ! 1111
+	|	222 -> backRights ! 1100
+	|   333 -> backRights ! 10
+	|   any -> backRights ! 0
+	end;
+	to Idle_RT
+
+//---------------------------------------------------------
+//                     User
+//---------------------------------------------------------
+process User[approvedUser : in none,
+			rejectedUser : in none,
+			failTasktoUser : in none,
+			sucessLocalTask : in none, 
+			successCenterTask : in none] (&logins : read write Logins, &doingTasks : read write DoingTasks)
+is
+			 
+states 
+	Idle_User, CheckingTask_User, CheckAllowed_User, offline_User, END, WaitTaskAns_User,
+	Failedtask_User, SuccessCenterTask_User,  SuccessLocalTask_User
+
+init 
+	to Idle_User
+
+from Idle_User
+	on not (full(logins));
+	select
+		logins := enqueue(logins, userLoginID(0))
+     [] logins := enqueue(logins, userLoginID(1))
+     [] logins := enqueue(logins, userLoginID(2))
+     [] logins := enqueue(logins, userLoginID(3))
+	end;
+	to CheckAllowed_User
+	
+from CheckAllowed_User
+	select
+		approvedUser;
+		to CheckingTask_User
+	[]
+		rejectedUser;
+		to offline_User
+	end
+	
+from offline_User
+	to END
+
+from CheckingTask_User
+	on not (full(doingTasks));
+	select
+		doingTasks := enqueue(doingTasks, tasknumber(0))
+     [] doingTasks := enqueue(doingTasks, tasknumber(1))
+     [] doingTasks := enqueue(doingTasks, tasknumber(2))
+     [] doingTasks := enqueue(doingTasks, tasknumber(3))
+	end;
+	to WaitTaskAns_User
+	
+from WaitTaskAns_User
+	select
+		failTasktoUser;
+		to Failedtask_User
+	[]
+		sucessLocalTask;
+		to SuccessLocalTask_User
+	[]
+		successCenterTask;
+		to SuccessCenterTask_User
+	end
+	
+from Failedtask_User
+	to END
+	
+from SuccessCenterTask_User
+	to END
+	
+from SuccessLocalTask_User
+	to END
+	
+	
+
+	
+
+//---------------------------------------------------------
+//            **********Component**********
+//---------------------------------------------------------	
+component SCADA is
+
+var
+	logins : Logins,
+	doingTasks : DoingTasks
+
+port
+	sendtoSingleLogin : int,
+	checkLogin : int,
+	checkPolicy : int,
+	approved : none,
+	rejected : none,
+	access : none,
+	rejectedAccess : none ,
+	accessHMI : none,
+	rejectedAccessHMI : none ,
+	sendTask : Type_TaskAndUsrid,
+	sendToCheckRight :  Type_TaskAndUsrid,
+	checkingRight : int,
+	backRights : int,
+	queryData : none,
+	backDataToHMI : none,
+	backDataToCP : none,
+	backDataToSAP : none,
+	backRejectedTask : none,
+	backRejectedTaskHMI : none,
+	sentToNet : none,
+	arriveLocalcontroller : none,
+	orderLocalService : none,
+	backLocalTaskHMI : none,
+	doingLocalTask : none,
+	rejectedUser : none,
+	approvedUser : none,
+	failTasktoUser : none,
+	sucessLocalTask : none,
+	successCenterTask: none
+
+par
+
+	   HMI[sendtoSingleLogin, accessHMI, 
+		   rejectedAccessHMI, sendTask, 
+		   backDataToHMI, backRejectedTaskHMI, 
+		   backLocalTaskHMI, rejectedUser,
+		   approvedUser, failTasktoUser,
+		   sucessLocalTask, successCenterTask](&logins, &doingTasks)
+	|| SingleAccessPoint[sendtoSingleLogin, checkLogin,
+						 access, rejectedAccess, 
+						 accessHMI, rejectedAccessHMI, 
+						 sendTask, sendToCheckRight,
+						 backDataToSAP, backDataToHMI,
+						 backRejectedTask, backRejectedTaskHMI,
+						 doingLocalTask, backLocalTaskHMI] 
+	|| CheckPoint[checkLogin, checkPolicy, 
+				  approved, rejected, 
+				  access, rejectedAccess, 
+				  sendToCheckRight, checkingRight,
+				  backRights, queryData,
+				  backDataToCP, backDataToSAP,
+				  backRejectedTask, sentToNet,
+				  doingLocalTask]
+	|| Rights[checkingRight, backRights]
+	|| SecurityPolicy[checkPolicy, approved, rejected]
+	|| DataServer[queryData, backDataToCP]
+	|| Network[sentToNet, arriveLocalcontroller]
+	|| LocalController[arriveLocalcontroller, orderLocalService]
+	|| FieldService[orderLocalService]
+	|| User[approvedUser, rejectedUser, failTasktoUser,
+		   sucessLocalTask, successCenterTask](&logins, &doingTasks)
+	
+	
+end SCADA

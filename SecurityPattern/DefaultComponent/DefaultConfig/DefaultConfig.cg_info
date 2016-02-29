@@ -87,7 +87,7 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "SecureSCADA";
 	- _id = GUID 7a8bbae1-6414-4231-8285-c6795adb92a7;
 }
-- genTime = 2.22.2016::22:34:49;
+- genTime = 2.27.2016::12:45:0;
 - hElement = { IHandle 
 	- _m2Class = "IClass";
 	- _filename = "SecureSCADA.sbs";
@@ -150,5 +150,5 @@ I-Logix-RPY-Archive version 8.10.0 * 6930133
 	- _name = "DefaultComponent\\DefaultConfig";
 	- _id = GUID b9513818-8623-45c8-9a36-4928d8fa7e28;
 }
-- genTime = 2.22.2016::22:34:49;
+- genTime = 2.27.2016::12:45:0;
 
